@@ -1,0 +1,157 @@
+<!doctype html>
+<!--
+https://www.fit.vutbr.cz/study/courses/ITW/private/cviceni/projekt2.html
+-->
+<html>
+	<head>
+		<title>Auto Trakař</title>
+		<meta charset="UTF-8">
+		<meta name="robots" content="index,follow">
+		<meta name="description" content="Váš oblíbený prodejce automobilů v České Republice">
+		<meta name="author" content="Marek Šipoš (xsipos03)">
+		<meta name="keywords" content="auto trakař, automobil, prodejce, servis, půjčovna, předvádění, novinky">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="print.css" media="print" />
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<script src="jquery-1.12.3.min.js"></script>
+		<script src="jquery.cookie.js"></script>
+		<script src="clickable.js"></script>
+	</head>
+	<body>
+		<header id="main_header">
+			<div id="main_header_content">
+				<a href="http://www.stud.fit.vutbr.cz/~xsipos03/trakar/index.html">
+					<div id="h_logo"></div>
+					<h1>Auto Trakař</h1>
+				</a>
+				<nav id="h_menu">
+					<ul>
+						<li><a href="index.html" class="current">Hlavní stránka</a></li>
+						<li><a href="about.html">O nás</a></li>
+						<li><a href="browse.html">Automobily</a></li>
+						<li><a href="services.html">Služby</a></li>
+						<li><a href="contact.html">Kontakt</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div id="main_content"> <!-- this must be div, not section! (lack of header, its just container) -->
+			<nav id="s_menu">
+				<ul>
+					<li><a href="#" id="s_facebook" title="Facebook">Facebook</a></li>
+					<li><a href="#" id="s_twitter" title="Twitter">Twitter</a></li>
+					<li><a href="#" id="s_rss" title="RSS">RSS</a></li>
+				</ul>
+			</nav>
+			<article id="c_body">
+				<h2>Vítejte na Auto Trakař!</h2>
+				<p>
+					Srdečně vás vítáme na našich stránkách! Jsme spolehlivým prodejcem automobilů různých značek.<br />
+					Kromě toho poskytujeme komplexní služby v oblasti servisu a poradenství! Navíc pravidelně pořádáme výstavy
+					novinek na trhu, takže neváhejte a navštivte jednu z našich provozoven, kde vám naši zaměstnanci rádi poradí!<br />
+				</p>
+				<p class="center">
+					<img src="images/lineup.png" alt="Proč Auto Trakař?" /><br />
+					Již více než 20 let nabízíme našim zákazníkům ty nejkvalitnější vozy za dobré ceny.<br />
+					Využijte našich akčních nabídek, nyní nabízíme i bezúročné půjčky na vozy!<br />
+					<a href="neexistujici.html">Odkaz na neexistující stránku</a>
+				</p>
+				<div id="clickable">
+					<h3 class="canclick">Důležité!</h3>
+					<p>
+						Tato webová stránka nepojednává o reálném firemním subjektu!<br />
+						Jedná se o školní projekt do předmětu Tvorba webových stránek na Vysokém učení technickém v Brně.<br />
+						Díky za pochopení!
+					</p>
+				</div>
+			</article>
+			<aside id="c_menu">
+				<h2>Novinky</h2>
+				<dl>
+					<dt>07.04 2016</dt>
+					<dd>Získáno ocenění Smolař roku za rok 2016!</dd>
+					<dt>03.04 2016</dt>
+					<dd>Zloději našich vozů Subaru dopadeni, byli to nespokojení zaměstnanci</dd>
+					<dt>02.04 2016</dt>
+					<dd>Zloději vykradli náš ateliér s novou řadou Subaru XV</dd>
+					<dt>28.03 2016</dt>
+					<dd>Provozovna v Brně opět v provozu!</dd>
+					<dt>20.03 2016</dt>
+					<dd>Inovované Subaru XV na skladech! Předvedeme Vám je v našich předváděcích ateliérech!</dd>
+					<dt>15.03 2016</dt>
+					<dd>Další útok extrémistů na našeho zaměstnance na Moravě</dd>
+					<dt>12.03 2016</dt>
+					<dd>Vyhořela nám provozovna v Brně</dd>
+				</dl>
+				<h2>Provozovny</h2>
+				<a href="contact_brno.html">
+				<h3>Brno</h3>
+					<table class="places">
+					<tr>
+						<th>Adresa:</th>
+						<td>Virtuální 23, 618 00 Brno</td>
+					</tr>
+					<tr>
+						<th>Služby:</th>
+						<td>Předvádění, prodej</td>
+					</tr>
+					<tr>
+						<th>Otevírací doba:</th>
+						<td>po-pa 8:00-18:00</td>
+					</tr>
+					</table>
+				</a>
+				<hr />
+				<a href="contact_praha.html">
+					<h3>Praha</h3>
+					<table class="places">
+					<tr>
+						<th>Adresa:</th>
+						<td>Skrytá 131A, 101 00 Praha 101</td>
+					</tr>
+					<tr>
+						<th>Služby:</th>
+						<td>Předvádění, prodej, servis</td>
+					</tr>
+					<tr>
+						<th>Otevírací doba:</th>
+						<td>po-so 6:00-13:00</td>
+					</tr>
+					</table>
+				</a>
+				<hr />
+				<a href="contact_ostrava.html">
+					<h3>Ostrava</h3>
+					<table class="places">
+					<tr>
+						<th>Adresa:</th>
+						<td>Ukradená 1, 702 00 Ostrava</td>
+					</tr>
+					<tr>
+						<th>Služby:</th>
+						<td>Prodej, servis</td>
+					</tr>
+					<tr>
+						<th>Otevírací doba:</th>
+						<td>po-pa 10:00-19:00</td>
+					</tr>
+					</table>
+				</a>
+			</aside>
+		</div>
+		<footer id="main_footer">
+			<nav id="f_menu">
+				<ul>
+					<li><a href="sitemap.html">Mapa webu</a></li>
+					<li><a href="seo.html">SEO</a></li>
+					<li><a href="links.html">Odkazy</a></li>
+				</ul>
+			</nav>
+			<p id="f_copyright">
+				Copyright &copy; 2016 Auto Trakař<br />
+				Made with love by Marek Šipoš, FIT VUT<br />
+				Všechna práva vyhrazena.
+			</p>
+		</footer>
+	</body>
+</html>

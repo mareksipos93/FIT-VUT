@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+	<meta charset="UTF-8">
+	<title>FITLayout</title>
+	<meta name="robots" content="index,follow">
+	<meta name="author" content="FIT">
+	<meta name="keywords" content="">
+	<meta name="description" content="Document analysis software">
+	<link rel="stylesheet" type="text/css" href="itw1.css">
+</head>
+<body id="itwp1">
+<div id="page">
+
+<header id="header">
+	<div class="inner">
+		<h1><a href="itw1.html"><span>FITLayout</span></a></h1>
+
+		<div id="topmenu">
+		    <a href="#" class="login">Login</a>
+			<a class="hidden" href="#contentbox">Skip menu</a>
+			<a class="hidden" href="#content">Skip to main content</a>
+			<hr>
+		</div>
+		
+		<div id="social" class="icons">
+			<a href="http://twitter.com/" class="twitter"><span>Twitter</span></a>
+			<a href="http://www.facebook.com/" class="fb"><span>Facebook</span></a>
+			<a href="http://www.linkedin.com/" class="linkedin"><span>Linked In</span></a>
+		</div>
+
+		<nav id="menubar">
+		<ul id="menu">
+		    <li class="dropdown"><a href="#">Company</a></li>
+		    <li class="selected dropdown"><a href="#">Products</a></li>
+		    <li class="dropdown"><a href="#">News</a></li>
+		    <li class="dropdown"><a href="#">Downloads</a></li>
+		    <li><a href="#">Contact</a></li>
+		</ul>
+		</nav>
+	</div>
+</header>
+	
+<!-- Titulni obsah -->	
+<section id="main">
+	<div class="inner">
+		<header>
+			<h2>Page Analyzer</h2>
+			<p class="btn demo"><a href="#">Demo</a></p>
+			<p class="btn docs"><a href="#">Documentation</a></p>
+			<p>
+				Analyze web sources and extract useful information.
+			</p>
+		</header>
+		
+		<section>
+			<img src="images/browser.png" alt="Browser GUI" width="600">
+			<h3>Overview</h3>
+			<p>FitLayout is an extensible web page segmentation and analysis framework written in Java.
+				It defines a generic Java API for representing a rendered web page and its division to visual
+				areas and it provides a base for implementing page segmentation algorithms with a common
+				application interface. As a sample segmentation method, it implements a previously published
+				segmentation algorithm based on recursive visual area merging and separator detection. The
+				framework includes tools for post-processing the segmentation result by different text or
+				visual classification methods. Finally, it also provides tools for controlling the
+				segmentation process and examining the segmentation results through a graphical user
+				interface. The segmentation result may be stored as RDF data for later analysis.</p>
+				
+			<h3>Tools</h3>
+			<p>The tools allow to run the segmentaion on the given URL and examine the results by a GUI browser.
+			The segmentation module provides a generic framework for implementing web page segmentation algorithms. It represents the page as a tree of detected visual areas and defines an interface for implementing custom tree processing methods (operators) that implement the actual segmentation.</p>
+			<p>The default page segmentation algorithm is based on our secret algorithm. It uses a bottom-up approach that merges the individual boxes to larger visual areas. However, the FITLayout framework is open to adding other segmentation algorithms.</p>
+			
+			<h3>License</h3>
+			<p>FITLayout is available under the terms of the <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a>.</p>
+			
+		</section>
+		
+	</div>
+</section>
+
+<!-- Podruzny obsah -->	
+
+<section id="related">
+	<div class="inner">
+		<section class="col" id="news">
+			<h3><a href="#">News</a></h3>
+				
+				<h4>Some title</h4>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam rhoncus, lacus sed tincidunt mollis,
+				tellus erat mollis sapien, at ullamcorper augue nisi a justo. Praesent et tellus at lorem rhoncus venenatis
+				non id velit. Nullam vestibulum arcu quis erat fermentum, sed venenatis arcu tristique. Quisque fermentum nisi sed porta fermentum. Nam tincidunt, ipsum et blandit sodales, turpis enim ultricies erat, a viverra tellus elit vitae enim. Etiam placerat enim orci, nec pulvinar lorem vehicula ac. Etiam eget elementum sem. Integer nisi elit, bibendum vitae leo non, posuere tincidunt neque.
+				</p>
+				<strong>10 Dec 2014</strong>
+							
+				<h4>Some title</h4>
+				<p>Vestibulum luctus nibh non risus semper consectetur. Sed laoreet eget metus in elementum. Ut mollis
+				faucibus risus a faucibus. Vestibulum eget maximus purus. Maecenas vitae ipsum mattis augue feugiat
+				rutrum. Sed tortor eros, convallis vitae libero vitae, commodo lobortis lacus. Duis condimentum consectetur
+				augue, vel pharetra orci aliquam sit amet.</p>
+				<strong>5 Jan 2015</strong>
+							
+			
+		</section>
+	
+		<aside>
+			<div id="references" class="abox">
+				<h3>References</h3>
+				<a class="thumb d2" href="#">
+					<q>FitLayout is very useful for obtaining structured data from the web. We use it every dat
+					for obtaining statistical data about the products offered by our competitors.</q>
+					<span class="sgn">John Smith</span>
+				</a>
+			</div>
+			<div id="didyouknow" class="abox">
+				<h3>Did you know?</h3>
+				<a class="thumb d2" href="#">
+					<q>The FitLayout pattern matching algorithms save time and money in the specification phase.
+					The designers may focus on the main problem instead of manually designing complex extraction
+					templates.</q>
+				</a>
+			</div>
+		</aside>
+	</div>
+</section>
+
+
+<footer id="footer">
+<div class="inner">
+	<hr>
+	<ul class="menu">
+		    <li><a href="#">Home</a></li>
+		    <li><a href="#">News</a></li>
+		    <li><a href="#">Contact</a></li>
+	</ul>
+	<div class="copy">Copyright © 2016 FITLayout. All rights reserved.</div>
+</div>
+</footer>
+
+</div>
+
+</body>
+</html>

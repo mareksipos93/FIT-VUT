@@ -1,0 +1,2 @@
+DefaultCharset utf-8
+ErrorDocument 404 http://www.stud.fit.vutbr.cz/~xsipos03/trakar/notfound.html

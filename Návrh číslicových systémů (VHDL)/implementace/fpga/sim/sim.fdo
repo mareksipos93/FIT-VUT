@@ -1,0 +1,87 @@
+# top_level.fdo: Top Level Funstion simulation file
+# Author: Tomas Martinek <martinto at fit.vutbr.cz>
+
+# -------------------------------------------------------------------------
+#                        Modules Compilation
+# -------------------------------------------------------------------------
+#Project setup
+#========================================
+#Test bench files (separated by space)
+set TBFILES "../../../../../fpga/models/keyboard/keyboard.vhd \
+             ../../../../../fpga/models/lcd/lcd.vhd \
+             tb.vhd"
+set TIMESIM "no"
+
+#Compile project
+#========================================
+source "../../build/fpga/accterm_sim.fdo"
+
+# Starting simulation
+vsim -t 1ps -novopt -L xilinxcorelib -lib work testbench
+
+# Suppress warnings from arithm library
+puts "Std Arith Warnings - Disabled"
+set  StdArithNoWarnings 1
+
+# -------------------------------------------------------------------------
+#                       Waveform Definition 
+# -------------------------------------------------------------------------
+
+add wave -label reset /testbench/uut/reset
+add wave -label clk /testbench/uut/clk
+
+# Keyboard signals --------------------------------------------
+add wave -divider "Keyboard Interface"
+add wave -label key /testbench/key
+add wave -label kin /testbench/uut/kin
+add wave -label kout /testbench/uut/kout
+
+# LCD display signals -----------------------------------------
+add wave -divider "LCD Display Interface"
+add wave -label lrw /testbench/uut/lrw
+add wave -label le /testbench/uut/le
+add wave -label lrs /testbench/uut/lrs
+add wave -hex -label ld /testbench/uut/ld
+add wave -label display /testbench/lcd_u/display
+
+# User signals -----------------------------------------------
+add wave -divider "Keyboard Controller"
+add wave -noupdate -label clk /testbench/uut/kbc_u/clk 
+add wave -noupdate -label data_out /testbench/uut/kbc_u/data_out 
+
+add wave -divider "LCD Controller"
+add wave -noupdate -label clk /testbench/uut/lcdc_u/clk
+add wave -noupdate -ascii -label data /testbench/uut/lcdc_u/data
+add wave -noupdate -label write /testbench/uut/lcdc_u/write
+add wave -noupdate -label clear /testbench/uut/lcdc_u/clear
+
+add wave -divider "FSM Signals"
+add wave -noupdate -label clk /testbench/uut/fsm_u/clk
+add wave -noupdate -label key /testbench/uut/fsm_u/key
+add wave -noupdate -label cnt_of /testbench/uut/fsm_u/cnt_of
+add wave -noupdate -label fsm_cnt_ce /testbench/uut/fsm_u/fsm_cnt_ce
+add wave -noupdate -label fsm_lcd_clr /testbench/uut/fsm_u/fsm_lcd_clr
+add wave -noupdate -label fsm_lcd_wr /testbench/uut/fsm_u/fsm_lcd_wr
+add wave -noupdate -label fsm_mx_mem /testbench/uut/fsm_u/fsm_mx_mem
+add wave -noupdate -label fsm_mx_lcd /testbench/uut/fsm_u/fsm_mx_lcd
+add wave -noupdate -label present_state /testbench/uut/fsm_u/present_state
+
+add wave -divider "ROM Memory Signals"
+add wave -noupdate -label clk /testbench/uut/clk
+add wave -noupdate -label addr /testbench/uut/rom_ok/addr
+add wave -noupdate -ascii -label data_out /testbench/uut/rom_ok/data_out
+add wave -noupdate -label addr /testbench/uut/rom_bad/addr
+add wave -noupdate -ascii -label data_out /testbench/uut/rom_bad/data_out
+
+add wave -divider "FPGA Logic"
+add wave -noupdate -label clk /testbench/uut/clk
+add wave -noupdate -label cnt_mem_ld /testbench/uut/cnt_mem_ld
+add wave -noupdate -label cnt_mem_ce /testbench/uut/cnt_mem_ce
+add wave -noupdate -label cnt_mem /testbench/uut/cnt_mem
+add wave -noupdate -label cnt_mem_of /testbench/uut/cnt_mem_of
+add wave -noupdate -ascii -label mx_mem_do /testbench/uut/mx_mem_do
+add wave -noupdate -ascii -label mx_lcd_data /testbench/uut/mx_lcd_data
+
+run 200 us
+wave zoomful
+

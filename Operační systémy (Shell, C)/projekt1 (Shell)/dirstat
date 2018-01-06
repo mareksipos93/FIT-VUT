@@ -1,0 +1,259 @@
+#!/bin/ksh
+# Dirstat project
+# Author: Marek Sipos (xsipos03)
+# Solution for: IOS project 1
+# Date: 28.03.2016
+# Usage: dirstat [-i FILE_ERE] [DIR]
+# Args: -i 'FILE_ERE' = eregex to ignore files and folders
+#                 DIR = main folder to analyse
+
+# Function for argument handling
+ds_getargs()
+{
+    while true; do
+        case "$1" in
+            -i) # regex argument
+                if [ -n "$2" ] ; then # there is string after -i
+                    regex="$2"
+                    shift
+                else
+                    printf "CHYBA: '-i' ocekava regularni vyraz.\n" >&2
+                    exit 1
+                fi
+                ;;
+            "") # $1 is not set, exit
+                break
+                ;;
+             *) # DIR argument
+                rootdir="$1"
+                ;;
+        esac
+        shift
+    done
+}
+
+# Function to get proper extension, input is full name, output is in $ext
+ds_getextension()
+{
+    # get name of file
+    ext="$(basename "$1")"
+
+    # remove trailing dot (hidden files)
+    case "$ext" in
+        .*)
+            ext="${ext:1}"
+            ;;
+        *)
+            ;;
+    esac
+    # check for files without any extension
+    case "$ext" in
+        *.*)
+            ext="$ext"
+            ;;
+          *)
+            ext=""
+            ;;
+    esac
+
+    # get extension only
+    ext="${ext##*.}"
+    
+    # check for alphanumeric extension
+    test="${ext//[[:alnum:]]}"
+    if [ -n "$test" ] ; then ext="" ; fi
+}
+
+# Function to get file size, input is full name, output is in $size
+ds_getsize()
+{
+    size="$(wc -c<"$1" | tr -d [[:space:]])"
+}
+
+# Function to get median value, input is string with values, output is in $med
+ds_getmedian()
+{
+    if [ -n "$1" ] ; then
+      arg="$(echo -n "$1" | tr "[:space:]" "\n" | sort | tr "\n" " ")" # sort
+      count="$(echo "$arg" | wc -w)"
+      # odd
+      if [ "$(( count % 2 ))" -eq 1 ] ; then
+          med="$(echo $arg | cut -d " " -f $(( (count+1) / 2 )))" # get middle number
+      # even
+      else
+          med1="$(echo "$arg" | cut -d " " -f "$(( (count) / 2 ))")" # get first number
+          med2="$(echo "$arg" | cut -d " " -f "$(( (count+2) / 2 ))")" # get second number
+          med="$(( (med1 + med2) / 2 ))"
+      fi
+    else med="" ; fi
+}
+
+# Function to print results depending on extension, input is extension
+ds_printresults()
+{
+    # No extension = basic info
+    if [ -z "$1" ] ; then
+    
+      # small enhancements
+      if [ "$totaldirs" -eq 0 ] ; then totaldirs=1 ; fi
+      if [ "$totalfiles" -eq 0 ] ; then avgsize="N/A" ; else avgsize="$(($totalsize/$totalfiles))" ; fi
+      if [ "$maxsize" -eq 0 ] ; then maxsize="N/A" ; fi
+      if [ "$totalfiles" -eq 0 ] ; then median="N/A" ; fi
+      if [ -n "$extensions" ] ; then
+          extensionsprint="$(echo -n "$extensions" | tr "[:space:]" ",")" # spaces to commas
+      fi
+      
+      # actual report
+      echo "Root directory: $rootdir"
+      echo "Directories: $totaldirs"
+      echo "Max depth: $maxdepth"
+      echo "Average no. of files: $(($totalfiles/$totaldirs))"
+      echo "All files: $totalfiles"
+      echo "  Largest file: $maxsize"
+      echo "  Average file size: $avgsize"
+      echo "  File size median: $median"
+      echo "File extensions: ${extensionsprint%?}" # without last comma
+    else
+      # indirect variables
+      totalfilesname="totalfiles_$1"
+      totalsizename="totalsize_$1"
+      maxsizename="maxsize_$1"
+      avgsizename="avgsize_$1"
+      medianname="median_$1"
+      
+      # small enhancements
+      if [ "${!totalfilesname}" -eq 0 ] ; then
+          eval "avgsize_$1=\"N/A\""
+      else
+          eval "avgsize_$1=\"\$((\${!totalsizename}/\${!totalfilesname}))\""
+      fi
+      if [ "${!maxsizename}" -eq 0 ] ; then eval "maxsize_$1=\"N/A\"" ; fi
+      if [ "${!totalfilesname}" -eq 0 ] ; then eval "median_$1=\"N/A\"" ; fi
+      
+      # actual report
+      echo "Files .$1: ${!totalfilesname}"
+      echo "  Largest file .$1: ${!maxsizename}"
+      echo "  Average file size .$1: ${!avgsizename}"
+      echo "  File size median .$1: ${!medianname}"
+    fi
+}
+
+############ MAIN BODY ############
+
+##### LOCALE #####
+LC_ALL=POSIX
+
+##### GET ARGUMENTS ($regex $rootdir) #####
+ds_getargs "$@"
+
+##### DEFAULT ARGUMENTS #####
+if [ -z "$rootdir" ] ; then rootdir="$PWD" ; fi # script folder
+if [ -z "$regex" ] ; then regex="(?!.*)" ; fi # match everything, so nothing ignored
+
+##### INVALID ROOT DIR #####
+if ! [ -d "$rootdir" ] ; then
+    printf "CHYBA: Adresar '%s' neni platny.\n" "$rootdir" >&2
+    exit 1
+fi
+
+
+##### INIT #####
+extensions=" " # that space is important for later "<space>check<space>"
+totalfiles=0 # for average size
+totaldirs=0
+maxdepth=1
+maxsize=0
+totalsize=0
+median=0
+lomitka="${rootdir//[^//]}"
+
+##### LET THE SLAUGHTER BEGIN #####
+find "$rootdir" ! -regex "$regex" 2>/dev/null -exec bash -c 'echo -n '{}'; echo -n " " ; echo '{}' | grep -o / | wc -l | tr -d " "' \; | { while read line ; do # MOST IMPORTANT BEGIN !!!!!!!!!!!
+    ##### EXTRACT DIR DEPTH #####
+    depth=${line##* }
+    if [ "$depth" -gt "$maxdepth" ] ; then maxdepth="$depth" ; fi
+    line=$(echo $line | sed -e 's/^\(.*\) .*/\1/')
+    ##### ACCESS DENIED #####
+    if [ ! -r "$line" ] ; then
+        nazev="$(basename "$line")"
+        if [ -d "$line" ] ; then
+            printf "CHYBA: Pristup k adresari '%s' odepren.\n" "$nazev" >&2
+            exit 1
+        elif [ -f "$line" ] ; then
+            printf "CHYBA: Pristup k souboru '%s' odepren.\n" "$nazev" >&2
+            exit 1
+        fi
+    fi
+    ##### DIRECTORIES #####
+    if [ -d "$line" ] ; then
+        totaldirs="$((totaldirs+1))"
+    ##### FILES #####
+    elif [ -f "$line" ] ; then
+        # Get extension and size
+        ds_getextension "$line"
+        ds_getsize "$line"
+
+        # save sizes for median
+        sizes="$sizes$size "
+        # total amount of files
+        totalfiles="$((totalfiles+1))"
+        # size of all files
+        totalsize="$((totalsize+size))"
+        # maximum file size
+        if [ "$size" -gt "$maxsize" ] ; then maxsize="$size" ; fi
+        # Set needed variables for extensions only
+        if [ -n "$ext" ] ; then
+            # save extensions for median and result printing
+            case "$extensions" in
+                *" $ext "*)
+                    ;; # already there, do nothing
+                *)
+                    # new extension, save it
+                    extensions="$extensions$ext "
+                    # and prepare maxsize variable for this extension
+                    eval "maxsize_$ext=0"
+                    ;;
+            esac
+            # save sizes for median
+            sizesname="sizes_$ext" # indirect variable name to avoid arrays
+            eval "sizes_$ext=\"\${!sizesname}\$size \"" # unique variable for each extension
+            # total amount of files
+            totalfilesname="totalfiles_$ext" # indirect variable name to avoid arrays
+            eval "totalfiles_$ext=\"\$((\${!totalfilesname}+1))\"" # unique variable for each extension
+            # size of all files
+            totalsizename="totalsize_$ext" # indirect variable name to avoid arrays
+            eval "totalsize_$ext=\"\$((\${!totalsizename}+size))\"" # unique variable for each extension
+            # maximum file size
+            maxsizename="maxsize_$ext" # indirect variable name to avoid arrays
+            if [ "$size" -gt "${!maxsizename}" ] ; then eval "maxsize_$ext=\"\$size\"" ; fi
+        fi
+    fi
+done 
+
+extensions="${extensions:1}" # remove trailing space
+##### GET MEDIAN VALUES #####
+# total median
+ds_getmedian "$sizes"
+median="$med"
+# extensions median
+for ext in $extensions ; do
+    sizesname="sizes_$ext" # indirect variable name to avoid arrays
+    ds_getmedian "${!sizesname}"
+    eval "median_$ext=\"\$med\"" # unique variable for each extension
+done
+
+##### Sort extensions #####
+extensions="$(echo -n "$extensions" | tr "[:space:]" "\n" | sort | tr "\n" " ")"
+
+##### PRINT RESULTS #####
+ds_printresults
+
+if [ -n "$extensions" ] ; then
+    for ext in $extensions ; do
+        ds_printresults "$ext"
+    done
+fi
+
+} # MOST IMPORTANT END !!!!!!!!!!!
+
+###################################

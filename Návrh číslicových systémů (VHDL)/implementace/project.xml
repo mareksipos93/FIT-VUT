@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project outputprefix="accterm">
+
+	<!--  Project description -->
+	<name>Pristupovy terminal</name>
+	<author>Tomas Martinek</author>
+	<authoremail>martinto@fit.vutbr.cz</authoremail>
+	<revision>20090201</revision>
+	<description>Aplikace pristupoveho terminalu</description>
+
+	<!--  MCU part -->
+	<mcu>
+		<file>main.c</file>
+	</mcu>
+
+	<!-- FPGA part -->
+	<fpga architecture="top">
+      <include>fpga/ctrls/keyboard/package.xml</include>
+      <include>fpga/ctrls/lcd/lcd_ctrl_high.xml</include>
+      <include>fpga/ctrls/spi/package.xml</include>
+
+		<file>rom_memory.vhd</file>
+		<file>fsm.vhd</file>
+		<file>fpga_mcu_dbg.vhd</file>
+		<file>fpga.vhd</file>
+
+		<file context="sim">../../../../fpga/models/keyboard/keyboard.vhd</file>
+		<file context="sim">../../../../fpga/models/lcd/lcd.vhd</file>
+		
+	</fpga>
+
+</project>
+
