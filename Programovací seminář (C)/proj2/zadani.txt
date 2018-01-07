@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Paralelní GREP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Vytvoøte program zalo¾ený na vláknech, který bude provádìt paralelní grep. Výsledná binárka "pgrep"
+bude mít 1+2i vstupních parametrù (priklady vstupu naleznete v souboru tests.txt):
+
+pgrep MIN_SCORE RE1 SC1 [ RE2 SC2 ] [ RE3 SC3 ] ...
+
+MIN_SCORE: minimální score
+RE: regulární výraz
+SC: score získané, pokud øádka na vstupu splòuje regulární výraz RE
+
+Minimální poèet parametrù jsou 3, maximální není omezen (musí v¹ak být liché èíslo).
+
+Program pgrep v¾dy naète jednu øádku standardního vstupu a spoèítá její score. Pokud score je alespoò
+MIN_SCORE, tak je øádka vypsána na standardní výstup.
+
+Výpoèet score:
+1) Poèáteèní score pro ka¾dý øádek je 0
+2) Pro ka¾dý regulární výraz ovìøíme, zda-li øádka splòuje reg. výray REi.
+3) Pokud ano, tak pøièteme k aktualnímu score hodnotu SCi (mù¾e být i záporná).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Pøíklad
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Mìjme následující vstup:
+------------------
+Ahoj, tohle je pokus
+jestli to bude fungovat 23
+211 je vysledek
+
+------------------
+
+pgrep 3 "Ahoj.*" 1 "[0-9][0-9]* .*" 2 "[^0-9][^0-9]* .*" 3
+
+Score jsou následující:
+Ahoj, tohle je pokus --- score: 1+3=4
+jestli to bude fungovat 23 --- score: 3
+211 je vysledek --- score: 2
+  --- score: 0
+
+Vypsáno tedy bude:
+------------------
+Ahoj, tohle je pokus
+jestli to bude fungovat 23
+------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Výpoèet bude probíhat následovnì:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+1) Spusí se "k" vláken, ka¾dé pro jeden regulární výraz. Vlákna èekají, a¾ jim bude pøedáno øízení hlavním vláknem.
+2) Hlavní vlákno naète jednu øádku ze vstupu.
+3) Pokud na vstupu ¾ádná øádka nebyla, jsou v¹echna vlákna probuzena a korektnì ukonèena. Celý program konèí.
+4) Øízení pøedáno vláknùm pro testování zda-li naètená øádka odpovídá reg. výrazu a vlákna __paralelnì__ spoèítají score.
+5) Øízení je pøedáno zpìt hlavnímu vláknu.
+6) Pokud je skore alespoò zadané minimum, je øádka hlavním vláknem vypsána na standardní výstup.
+7) Pokraèuje se bodem 2.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Po¾adavky na implementaci:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Program musí splòovat následující po¾adavky:
+1) Pro ka¾dý RE na vstupu se na zaèátku spustí jedno vlákno a to bì¾í a¾ do konce
+2) V rámci jednoho vlákna lze provádìt dotazy pouze na jeden pøidìlený RE. 
+3) Pro dotazy na regulární výrazy pou¾ijte "#include <regex>" a "std::regex_match(string,regex)" --- viz priklad z democvika na regulární výrazy.
+3a) Mù¾ete pou¾ít i jinou knihovnu pro práci s Reg výrazy.
+4) Pro komunikaci mezi vlákny vyu¾ijte globální promìnná a pro synchronizaci semafory (pthread mutex, nebo
+C++ mutex).
+
+Dávejte pozor na data race (vstup, score, ...) a deadlock.
+Není problém, aby více vláken najednou èetlo ze stejné globální promìnné, ale pokud se zapisuje, je tøeba zajistit atomicitu.
+
+Za úèelem testování mù¾ete vlo¾it na vhodná místa do kódu usleep(1). Napø. pøed zmìnou score, naètení dal¹í øádky a podobnì. V odevzdaném kódu ji¾ usleep nebude.
+
+Implementace bude napsána v jazyce C s mo¾ností pou¾ití následujících komponent jazyka C++:
+
+- regulární výrazy z C++11 (#include <regex>)
+- vlákna a zánky z C++11 (#include <thread>, #include <mutex>)
+- pole promìnné délky z C++11 (#include <vector>) pro uchování threadù a zámkù.
+- funkce int read_input_line(char *) ze souboru kostra_pgrep.c
+
+Pøeklad bude provádìn buï:
+$ gcc pgrep.c -o pgrep -lpthread
+nebo
+$ g++ pgrep.c -o pgrep -lpthread
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Kostra programu a vzorové øe¹ení
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+V adresáøi /usr/local/groups/verifikace/IPS-projekt1/ naleznete následující soubory:
+* pgrep - vzorové øe¹ení
+* tests.txt - testy
+* kompilace.txt - jak zkompilovat
+* kostra_pgrep.c - základní kostra programu, ze které mù¾ete vyjít. Vytváøí pole vláken a pole zánkù a následnì je ru¹í. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Odevzdání
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Jeden soubor pgrep.c odevzdejte do pondìlí 16.10. do 13:55 prostøednictvím WISu k pøíslu¹nému termínu.
+Na semináøi dne 16.10. bude pøedstaveno vzorové øe¹ení.
+
+Projekt mù¾ete øe¹it ve dvojici s tím, ¾e do komentáøe v souboru pgrep.c uvedete jméno a login spoluautora. 
+Je  tøeba aby oba spoluautoøi odevzdali øe¹ení do WISu.
+
