@@ -1,0 +1,237 @@
+
+\documentclass[11pt, a4paper, titlepage]{article}
+
+\usepackage[czech]{babel}
+\usepackage[latin2]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{times}
+\usepackage[left=2cm,text={17cm,24cm},top=3cm]{geometry}
+\usepackage{multirow}
+% ruled = udela cary
+% linesnumbered = vytvorit cisla radku
+% noline = zadne cary u cisel radku
+% longend = endy obsahuji klicove slovo toho, co ukoncuji
+\usepackage[ruled,linesnumbered,noline,longend]{algorithm2e}
+\usepackage{graphics}
+\usepackage{picture}
+\usepackage{pdflscape}
+
+\newcommand{\textttsp}[1]{\texttt{ #1 }} % mezery kolem \texttt
+
+\begin{document}
+    \begin{titlepage}
+        \renewcommand{\baselinestretch}{0.5}
+        \thispagestyle{empty}
+        \begin{center}
+            \Huge\textsc{Vysoké uèení technické v Brnì}\\\medskip
+            \huge\textsc{Fakulta informaèních technologií}\\
+            \vspace{\stretch{0.382}} % zlaty rez
+            \LARGE Typografie a publikování\,--\,3.\,projekt\\\medskip
+            \Huge Tabulky a obrázky\\
+            \vspace{\stretch{0.618}}
+        \end{center}
+        \Large 3. dubna 2017\hfill Marek ©ipo¹
+    \end{titlepage}
+   
+    \newpage
+    \setcounter{page}{1}
+    
+    \section{Úvodní strana}
+    Název práce umístìte do zlatého øezu a nezapomeòte uvést dne¹ní datum a va¹e jméno a pøíjmení.
+    \section{Tabulky}
+    Pro sázení tabulek mù¾eme pou¾ít buï prostøedí\textttsp{tabbing}nebo prostøedí\textttsp{tabular.}
+    \subsection{Prostøedí\textttsp{tabbing}}
+    Pøi pou¾ití\textttsp{tabbing}vypadá tabulka následovnì:
+    
+    % \=     definice sloupce
+    % \kill  konec radku s definicemi
+    % \>     prechod k dalsimu sloupci
+    
+    \begin{tabbing}
+        \hspace{2.7cm}   \=   \hspace{1.3cm}   \=   \kill
+        \textbf{Ovoce}   \>   \textbf{Cena}    \>   \textbf{Mno¾ství}\\
+        Jablka           \>   25,90            \>   3\,kg\\
+        Hru¹ky           \>   27,40            \>   2,5\,kg\\
+        Vodní melouny    \>   35,--            \>   1\,kus
+    \end{tabbing}
+    \bigskip
+    
+    \noindent Toto prostøedí se dá také pou¾ít pro sázení algoritmù, ov¹em vhodnìj¹í je pou¾ít
+    prostøedí\textttsp{algorithm}nebo\textttsp{algorithm2e} (viz sekce \ref{algoritmy}).
+    
+    \subsection{Prostøedí\textttsp{tabular}}
+    Dal¹í mo¾ností, jak vytvoøit tabulku, je pou¾ít prostøedí\textttsp{tabular.}Tabulky pak budou
+    vypadat asi takto\footnote{Kdyby byl problém s\textttsp{cline,}zkuste se podívat tøeba sem: http://www.abclinuxu.cz/tex/poradna/show/325037.}:
+    
+    \bigskip
+    \begin{table}[h] % plovouci tabulka, h = here (t = top)
+        \catcode`\-=12 % oprava z abclinuxu, jinak se nechce prelozit
+        \begin{center}
+            \begin{tabular}{| l | r | r |}\hline % hline tvori ohraniceni tabulky
+                & \multicolumn{2}{| c |}{\textbf{Cena}}\\\cline{2-3} % cline je castecna cara pro spojene sloupce
+                \textbf{Mìna} & \textbf{nákup} & \textbf{prodej}\\\hline
+                EUR           & 27,02          & 27,20\\
+                GBP           & 31,08          & 31,80\\
+                USD           & 25,15          & 25,51\\
+                \hline
+            \end{tabular}
+            \caption{Tabulka kurzù k dne¹nímu dni}
+            \label{kurzy} % vztahuje se ke caption
+        \end{center}
+    \end{table}
+    
+
+    \begin{table}[h]
+        \catcode`\-=12
+        \begin{center}
+            \begin{tabular}{|c|c|}\hline
+                $A$ & $\neg A$\\\hline
+                \textbf{P} & N\\\hline
+                \textbf{O} & O\\\hline
+                \textbf{X} & X\\\hline
+                \textbf{N} & P\\\hline
+            \end{tabular}
+            \begin{tabular}{| c | c | c | c | c | c |}\hline
+                \multicolumn{2}{| c |}{\multirow{2}{*}{$A \wedge B$}} & \multicolumn{4}{| c |}{$B$}\\\cline{3-6}
+                \multicolumn{2}{| c |}{} & \textbf{P} & \textbf{O} & \textbf{X} & \textbf{N}\\\hline
+                \multirow{4}{*}{A} & \textbf{P} & P & O & X & N\\\cline{2-6}
+                  & \textbf{O} & O & O & N & N\\\cline{2-6}
+                  & \textbf{X} & X & N & X & N\\\cline{2-6}
+                  & \textbf{N} & N & N & N & N\\\hline
+            \end{tabular}
+            \begin{tabular}{| c | c | c | c | c | c |}\hline
+                \multicolumn{2}{| c |}{\multirow{2}{*}{$A \vee B$}} & \multicolumn{4}{| c |}{$B$}\\\cline{3-6}
+                \multicolumn{2}{| c |}{} & \textbf{P} & \textbf{O} & \textbf{X} & \textbf{N}\\\hline
+                \multirow{4}{*}{A} & \textbf{P} & P & P & P & P\\\cline{2-6}
+                  & \textbf{O} & P & O & P & O\\\cline{2-6}
+                  & \textbf{X} & P & P & X & X\\\cline{2-6}
+                  & \textbf{N} & P & O & X & N\\\hline
+            \end{tabular}
+            \begin{tabular}{| c | c | c | c | c | c |}\hline
+                \multicolumn{2}{| c |}{\multirow{2}{*}{$A \rightarrow B$}} & \multicolumn{4}{| c |}{$B$}\\\cline{3-6}
+                \multicolumn{2}{| c |}{} & \textbf{P} & \textbf{O} & \textbf{X} & \textbf{N}\\\hline
+                \multirow{4}{*}{A} & \textbf{P} & P & O & X & N\\\cline{2-6}
+                  & \textbf{O} & P & O & P & O\\\cline{2-6}
+                  & \textbf{X} & P & P & X & X\\\cline{2-6}
+                  & \textbf{N} & P & P & P & P\\\hline
+            \end{tabular}
+            \caption{Proto¾e Kleeneho trojhodnotová logika u¾ je \uv{zastaralá}, uvádíme si zde pøíklad ètyøhodnotové logiky}
+            \label{ctyrhodnotova}
+        \end{center}
+    \end{table}
+    
+    \section{Algoritmy}
+    \label{algoritmy}
+    Pokud budeme chtít vysázet algoritmus, mù¾eme pou¾ít prostøedí
+    \textttsp{algorithm\footnote{
+            Pro nápovìdu jak zacházet s prostøedím\textttsp{algorithm,}mù¾eme zkusit tuhle stránku:\\
+            http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithms/algorithms.pdf.}}
+    nebo
+    \textttsp{algorithm2e\footnote{Pro\textttsp{algorithm2e}zase tuhle:
+    http://ftp.cstug.cz/pub/tex/CTAN/macros/latex/contrib/algorithm2e/algorithm2e.pdf.}}.
+    Pøíklad pou¾ití prostøedí\textttsp{algorithm2e}viz Algoritmus \ref{fastslam}.\\
+    \bigskip
+    
+    \begin{algorithm}[H]
+        \caption{\textsc{Fast}SLAM}
+        \label{fastslam}
+        \SetKwInput{Input}{Input}
+        \SetKwInOut{Output}{Output}
+        \SetNlSty{}{}{:  } % nastaveni dvojtecek za cisla radku
+        \SetNlSkip{-1.52em} % posunuti cisel radku dovnitr
+        \Input{$(X_{t-1},u_t,z_t)$}
+        \Output{$X_t$}
+        \Indp\Indp % indent plus, diky Patrikovi :)
+        $\overline{X_t} = X_t = 0$\\
+        \For{$k=1$ \textnormal{to} $M$}
+        {
+            $x_t^{[k]} =$ \emph{sample\_motion\_model}$(u_t,x_{t-1}^{[k]})$\\
+            $w_t^{[k]} =$ \emph{measurement\_model}$(z_t,x_t^{[k]},m_{t-1})$\\
+            $m_t^{[k]} = updated\_occupancy\_grid(z_t,x_t^{[k]},m_{t-1}^{[k]})$\\
+            $\overline{X_t} = \overline{X_t} + \langle x_x^{[m]},w_t^{[m]}\rangle$
+        }
+        \For{$k=1$ \textnormal{to} $M$}
+        {
+            draw $i$ with probability $\approx w_t^{[i]}$\\
+            add $\langle x_x^{[k]},m_t^{[k]}\rangle$ to $X_t$\\
+        }
+        \Return{$X_t$}
+    \end{algorithm}
+    \bigskip
+    
+    \section{Obrázky}
+    Do na¹ich èlánkù mù¾eme samozøejmì vkládat obrázky. Pokud je obrázkem fotografie, mù¾eme
+    klidnì pou¾ít bitmapový soubor. Pokud by to ale mìlo být nìjaké schéma nebo nìco podobného,
+    je dobrým zvykem takovýto obrázek vytvoøit vektorovì.
+    
+    \begin{figure}[h]
+        \begin{center}
+            \scalebox{0.40}{\includegraphics*{etiopan.eps}\reflectbox{\includegraphics*{etiopan.eps}}}
+            \caption{Malý Etiopánek a jeho bratøíèek}
+            \label{etiopanek}
+        \end{center}
+    \end{figure}
+    \newpage
+
+    Rozdíl mezi vektorovým\,\dots
+    \begin{figure}[h]
+        \begin{center}
+            \scalebox{0.4}{\includegraphics*{oniisan.eps}}
+            \caption{Vektorový obrázek}
+            \label{vektorovy}
+        \end{center}
+    \end{figure}
+    
+    \noindent \dots\,a bitmapovým obrázkem
+    \begin{figure}[h]
+        \begin{center}
+            \scalebox{0.6}{\includegraphics*{oniisan2.eps}}
+            \caption{Bitmapový obrázek}
+            \label{bitmapovy}
+        \end{center}
+    \end{figure}
+    \\\noindent se projeví napøíklad pøi zvìt¹ení.\\
+    \indent Odkazy (nejen ty) na obrázky \ref{etiopanek}, \ref{vektorovy} a \ref{bitmapovy}, na tabulky \ref{kurzy} a \ref{ctyrhodnotova} a také na algoritmus \ref{fastslam} jsou udìlány pomocí køí¾ových odkazù. Pak je ov¹em potøeba zdrojový soubor pøelo¾it dvakrát.\\
+    \indent Vektorové obrázky lze vytvoøit i pøímo v \LaTeX u, napøíklad pomocí prostøedí\textttsp{picture.}
+    \newpage
+    
+    \begin{landscape}
+        \begin{figure}[p]
+            \setlength{\unitlength}{1cm}
+            \thicklines
+            \begin{picture}(10,6)
+                \linethickness{1pt}
+                \put(3,0){\line(1,0){18}}
+                \put(3,9){\line(1,0){18}}
+                \put(3,0){\line(0,1){9}}
+                \put(21,0){\line(0,1){9}}
+                \put(17.8,7){\circle{10}}
+                \put(5,4.5){\line(1,0){5}}
+                \put(7,3.8){\line(1,0){12}}
+                \put(7,3.4){\line(1,0){12}}
+                \put(7,3.4){\line(1,-1){0.6}}
+                \put(19,3.4){\line(0,1){0.4}}
+                \put(10,5.2){\line(1,0){4}}
+                \put(14,3.8){\line(0,1){1.4}}
+                \put(14,4.1){\line(1,0){4}}
+                \put(18,3.8){\line(0,1){0.3}}
+                \put(6,2.8){\line(1,0){4.5}}
+                \put(10.5,2.8){\line(2,-1){2.5}}
+                \put(11,3.3){\line(1,0){7.8}}
+                \put(19,1.5){\line(0,1){0.8}}
+                \put(18.8,2.3){\line(0,1){1}}
+                \put(11.5,2.3){\line(1,0){7.5}}
+                \linethickness{2pt}
+                \put(5,1.5){\line(0,1){3}}
+                \put(10,3.8){\line(0,1){1.4}}
+                \put(7,3.4){\line(0,1){0.4}}
+                \put(5,1.5){\line(0,1){3}}
+                \put(6,1.5){\line(0,1){1.3}}
+                \put(11,2.55){\line(0,1){0.75}}
+                \linethickness{5pt}
+                \put(3.5,1.5){\line(1,0){17}}
+            \end{picture}
+            \caption{Vektorový obrázek.}
+        \end{figure}
+    \end{landscape}
+\end{document}

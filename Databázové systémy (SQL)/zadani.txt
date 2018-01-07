@@ -1,0 +1,44 @@
+Cílem øešeného projektu je návrh a implementace relaèní databáze na zvolené téma.
+
+
+
+Projekt sestává ze pìti èástí, které se odevzdávají ve stanovených termínech do WISu:
+
+
+
+Datový model (ERD) a model pøípadù užití – Datový model (ER diagram) zachycující strukturu dat, resp. požadavky na data v databázi, vyjádøený jako diagram tøíd v notaci UML nebo jako ER diagram v tzv. Crow's Foot notaci a model pøípadù užití vyjádøený jako diagram pøípadù užití v notaci UML reprezentující požadavky na poskytovanou funkcionalitu aplikace používající databázi navrženého datového modelu. Datový model musí obsahovat alespoò jeden vztah generalizace/specializace (tedy nìjakou entitu/tøídu a nìjakou její specializovanou entitu/podtøídu spojené vztahem generalizace/specializace; vè. použití správné notace vztahu generalizace/specializace v diagramu).
+SQL skript pro vytvoøení základních objektù schématu databáze – SQL skript vytváøející základní objekty schéma databáze, jako jsou tabulky vè. definice integritních omezení (zejména primárních a cizích klíèù), a naplòující vytvoøené tabulky ukázkovými daty. Vytvoøené schéma databáze musí odpovídat datovému modelu z pøedchozí èásti projektu a musí splòovat upøesòující požadavky zadání.
+SQL skript s nìkolika dotazy SELECT – SQL skript, který nejprve vytvoøí základní objekty schéma databáze a naplní tabulky ukázkovými daty (stejnì jako skript v bodì 2) a poté provede nìkolik dotazù SELECT dle upøesòujících požadavkù zadání.
+SQL skript pro vytvoøení pokroèilých objektù schématu databáze – SQL skript, který nejprve vytvoøí základní objekty schéma databáze a naplní tabulky ukázkovými daty (stejnì jako skript v bodì 2), a poté zadefinuje èi vytvoøí pokroèilá omezení èi objekty databáze dle upøesòujících požadavkù zadání. Dále skript bude obsahovat ukázkové pøíkazy manipulace dat a dotazy demonstrující použití výše zmiòovaných omezení a objektù tohoto skriptu (napø. pro demonstraci použití indexù zavolá nejprve skript EXPLAIN PLAN na dotaz bez indexu, poté vytvoøí index, a nakonec zavolá EXPLAIN PLAN na dotaz s indexem; pro demostranci databázového triggeru se provede manipulace s daty, která vyvolá daný trigger; atp.).
+Dokumentace popisující finální schéma databáze – Dokumentace popisující øešení ze skriptu v bodì 4 vè. jejich zdùvodnìní (napø. popisuje výstup pøíkazu EXPLAIN PLAN bez indexu, dùvod vytvoøení zvoleného indexu, a výstup EXPLAIN PLAN s indexem, atd.).
+Všechny odevzdávané SQL skripty musí být urèené pro systém øízení báze dat (SØBD) Oracle 12c a musí umožòovat opakované volání, tedy odstranìní a opìtovné vytvoøení, nebo rovnou pøepsání, objektù v databázi a jejich dat (je v poøádku, když pøi prvním volání skriptu probìhnou neúspìšné pokusy o odstranìní neexistujících databázových objektù).
+
+
+
+Upøesòující požadavky zadání projektu
+
+
+
+V tabulkách databázového schématu musí být alespoò jeden sloupec se speciálním omezením hodnot, napø. rodné èíslo èi evidenèní èíslo pojištìnce (RÈ), identifikaèí èíslo osoby/podnikatelského subjektu (IÈ), identifikaèní èíslo lékaøského pracovištì (IÈPE), ISBN èi ISSN, èíslo bankovního úètu (vizte také tajemství èísla úètu), atp. Databáze musí v tomto sloupci povolit pouze platné hodnoty (implementujte pomocí CHECK integritního omezení nebo TRIGGER).
+
+V tabulkách databázového schématu musí být vhodná realizace vztahu generalizace/specializace urèená pro èistì relaèní databázi, tedy musí být vhodnì pøeveden uvedený vztah a související entity datového modelu do schéma relaèní databáze. Zvolený zpùsob pøevodu generalizace/specializace do schéma relaèní databáze musí být popsán a zdùvodnìn v dokumentaci.
+
+SQL skript obsahující dotazy SELECT musí obsahovat konkrétnì alespoò dva dotazy využívající spojení dvou tabulek, jeden využívající spojení tøí tabulek, dva dotazy s klauzulí GROUP BY a agregaèní funkcí, jeden dotaz obsahující predikát EXISTS a jeden dotaz s predikátem IN s vnoøeným selectem (nikoliv IN s množinou konstatních dat). U každého z dotazù musí být (v komentáøi SQL kódu) popsáno srozumitelnì, jaká data hledá daný dotaz (jaká je jeho funkce v aplikaci).
+
+
+
+SQL skript v poslední èásti projektu musí obsahovat vše z následujících
+
+
+
+vytvoøení alespoò dvou netriviálních databázových triggerù vè. jejich pøedvedení, z toho právì jeden trigger pro automatické generování hotnot primárního klíèe nìjaké tabulky ze sekvence (napø. pokud bude pøi vkládání záznamù do dané tabulky hodnota primárního klíèe nedefinována, tj. NULL),
+
+vytvoøení alespoò dvou netriviálních uložených procedur vè. jejich pøedvedení, ve kterých se musí (dohromady) vyskytovat alespoò jednou kurzor, ošetøení výjimek a použití promìnné s datovým typem odkazujícím se na øádek èi typ sloupce tabulky (table_name.column_name%TYPE nebo table_name%ROWTYPE),
+
+explicitní vytvoøení alespoò jednoho indexu tak, aby pomohl optimalizovat zpracování dotazù, pøièemž musí být uveden také pøíslušný dotaz, na který má index vliv, a v dokumentaci popsán zpùsob využití indexu v tomto dotazy (toto lze zkombinovat s EXPLAIN PLAN, vizte dále),
+
+alespoò jedno použití EXPLAIN PLAN pro výpis plánu provedení databazového dotazu se spojením alespoò dvou tabulek, agregaèní funkcí a klauzulí GROUP BY, pøièemž v dokumentaci musí být srozumitelnì popsáno, jak probìhne dle toho výpisu plánu provedení dotazu, vè. objasnìní použitých prostøedkù pro jeho urychlení (napø. použití indexu, druhu spojení, atp.), a dále musí být navrnut zpùsob, jak konkrétnì by bylo možné dotaz dále urychlit (napø. zavedením nového indexu), navržený zpùsob proveden (napø. vytvoøen index), zopakován EXPLAIN PLAN a jeho výsledek porovnán s výsledkem pøed provedením navrženého zpùsobu urychlení,
+
+definici pøístupových práv k databázovým objektùm pro druhého èlena týmu,
+
+vytvoøen alespoò jeden materializovaný pohled patøící druhému èlenu týmu a používající tabulky definované prvním èlenem týmu (nutno mít již definována pøístupová práva), vè. SQL pøíkazù/dotazù ukazujících, jak materializovaný pohled funguje

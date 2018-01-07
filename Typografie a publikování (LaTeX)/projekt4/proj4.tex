@@ -1,0 +1,47 @@
+
+\documentclass[11pt, a4paper, titlepage]{article}
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage[left=2cm,text={17cm,24cm},top=3cm]{geometry}
+
+\newcommand{\textttsp}[1]{\texttt{ #1 }} % mezery kolem \texttt
+\newcommand{\bibtex}{\textsc{Bib}\negthinspace\TeX} % BibTeX logo
+
+\begin{document}
+    \begin{titlepage}
+        \renewcommand{\baselinestretch}{0.5}
+        \thispagestyle{empty}
+        \begin{center}
+            \Huge\textsc{Vysoké učení technické v~Brně}\\\medskip
+            \huge\textsc{Fakulta informačních technologií}\\
+            \vspace{\stretch{0.382}} % zlaty rez
+            \LARGE Typografie a~publikování\,--\,4.\,projekt\\\medskip
+            \Huge Bibliografické citace\\
+            \vspace{\stretch{0.618}}
+        \end{center}
+        \Large \today\hfill Marek Šipoš
+    \end{titlepage}
+    
+    \newpage
+    \setcounter{page}{1}
+    
+    \section{Typografie věda je}
+    {\em\uv{Typografie je umělecko-technický obor, který se zabývá tiskovým písmem.}} Takto stručně a~výstižně definuje typografii Česká Wikipedie \cite{Wikipedia:Typografie}.
+    Můžeme však něco, co provázelo lidstvo již od raných dějin (dokonce typografii někteří autoři definují jako {\em starobylé řemeslo} \cite{Bringhurst:The_Elements_of_Typographic_Style}) \uv{zaškatulkovat} jako pouhý obor? Nikoliv. Lidstvo si mělo potřebu nějak předávat nebo uchovávat informace už od nepaměti. Ať už rytím na stěny jeskyní nebo klínopisem.
+    Protože se typografie zabývá (nejen) umístěním znaků a~rozmanitosti písem \cite{Ambrose:Typografie_graficky_design}, je velmi důležitým poslem a~průvodcem ve světě publikování. V~typografických systémech se používají různé znakové sady a~spousta druhů písem. Studium tohoto odvětví typografie je předmětem spousty prací a~publikací \cite{Cerny:Znakove_sady_v_typografickych_systemech}.
+    \section{\LaTeX}
+    V~moderní době informačních technologií ovšem potřebujeme jednoduchý způsob, kterým bychom mohli typografii efektivně využít. K~tomu slouží typografický systém \TeX\space a~jeho nadstavba \LaTeX, což je vlastně balík maker tohoto systému \cite{Wikibooks:LaTeX}.
+    Tento systém se na akademické půdě využívá nejvíce při psaní závěrečných prací, dokumentací a~různých zpráv a~reportů. K~sázení textu je možné využít i~různá komerční řešení, \LaTeX\space je však zdarma a~poskytuje velmi kvalitní výstup \cite{FEKT:LaTeX}. Studenti z~Brna mají navíc štěstí! Aby se při sázení dokumentů orientovali, mají možnost se účastnit kurzu Typografie a~publikování, který byl před pár lety otevřen \cite{Krena:Zavedeni_predmetu_typografie_a_publikovani}. 
+    \section{\bibtex\space podle normy ČSN ISO 690}
+    Když už hovoříme o~využití \LaTeX u v~akademickém prostředí, součástí všech odborných textů musí být jistě správné bibliografické citace. K~tomu slouží nástroj \bibtex, který zjednodušuje jejich tvorbu a~správné formátování v~publikaci. V~České republice se v~dnešní době používá norma ČSN ISO 690. Problém je, že \bibtex\space tuto formu nedodržuje. Řešením může být použití stylu \textttsp{czplain} a~zahrnutí souboru stylu {\em *.bst} spolu se zdrojovým textem práce. Tento styl je produktem bakalářské práce \cite{Pysny:BIBTEX_STYL_PRO_CSN_ISO_690_A_CSN_ISO_690_2} a~je použit i~v~tomto dokumentu.
+    \section{A~jak je to v~zahraničí?}
+    Růst a~zkoumání typografie a~jejich pravidel se netýká jen České republiky. Všude ve světě se snaží umělci, vědci i~nadšenci prozkoumat veškerá zákoutí sázení textů. Zkoumají různé aspekty a~prvky, a~to i~tak dopodrobna, že jsou schopni vydávat články o~bílých znacích a~spojovnících \cite{Janssen:The_Rectangle_in_Typography}. Typografie se ovšem netýká jen formálního zápisu a~způsobu sázení. Má samozřejmě vliv i~na lidství jako takové, proto se v~zahraničí odborníci věnují i~analýze sociálním sémiotickým přístupem \cite{Leeuwen:Towards_a_semiotics_of_typography}.
+    
+    \newpage
+    \renewcommand{\refname}{Literatura}
+    \bibliography{proj4}
+    \bibliographystyle{czplain}
+\end{document}
