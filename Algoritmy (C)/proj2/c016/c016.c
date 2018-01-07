@@ -68,8 +68,12 @@ int hashCode ( tKey key ) {
 */
 
 void htInit ( tHTable* ptrht ) {
+    if (ptrht == NULL) return;
 
- solved = 0; /*v pripade reseni, smazte tento radek!*/
+    // All items will be NULLed
+    for (int i = 0; i < HTSIZE; i++) {
+        (*ptrht)[i] = NULL;
+    }
 }
 
 /* TRP s explicitně zřetězenými synonymy.
@@ -80,8 +84,20 @@ void htInit ( tHTable* ptrht ) {
 */
 
 tHTItem* htSearch ( tHTable* ptrht, tKey key ) {
+    if (ptrht == NULL) return NULL;
 
- solved = 0; /*v pripade reseni, smazte tento radek!*/
+    int index = hashCode(key);
+    tHTItem *result = (*ptrht)[index];
+
+    if (result != NULL) {
+        // Iterate through List until we find the key that matches
+        do {
+            if (strcmp(result->key, key) == 0)
+                return result;
+        } while ((result = result->ptrnext) != NULL);
+    }
+
+    return result;
 }
 
 /* 
@@ -97,8 +113,31 @@ tHTItem* htSearch ( tHTable* ptrht, tKey key ) {
 **/
 
 void htInsert ( tHTable* ptrht, tKey key, tData data ) {
+    if (ptrht == NULL) return;
 
- solved = 0; /*v pripade reseni, smazte tento radek!*/
+    int index = hashCode(key);
+    tHTItem *item = htSearch(ptrht, key);
+
+    // Item exists, update data
+    if (item != NULL) {
+        item->data = data;
+    }
+    // Item does not exist, create it
+    else {
+        item = (tHTItem*)malloc(sizeof(tHTItem));
+        item->key = key;
+        item->data = data;
+
+        if ((*ptrht)[index] == NULL) {
+            // List on this index is empty
+            item->ptrnext = NULL;
+        }
+        else {
+            // List on this index is not empty
+            item->ptrnext = (*ptrht)[index];
+        }
+        (*ptrht)[index] = item;
+    }
 }
 
 /*
@@ -111,8 +150,11 @@ void htInsert ( tHTable* ptrht, tKey key, tData data ) {
 */
 
 tData* htRead ( tHTable* ptrht, tKey key ) {
+    if (ptrht == NULL) return NULL;
 
- solved = 0; /*v pripade reseni, smazte tento radek!*/
+    tHTItem *item = htSearch(ptrht, key);
+
+    return (item == NULL) ? NULL : &(item->data);
 }
 
 /*
@@ -126,8 +168,29 @@ tData* htRead ( tHTable* ptrht, tKey key ) {
 */
 
 void htDelete ( tHTable* ptrht, tKey key ) {
+    if (ptrht == NULL) return;
 
- solved = 0; /*v pripade reseni, smazte tento radek!*/
+    int index = hashCode(key);
+    tHTItem *item = (*ptrht)[index];
+    tHTItem *prev = NULL;
+
+    while (item != NULL) {
+        // It's the one we were looking for
+        if (strcmp(item->key, key) == 0) {
+            // If deleted items was first in List, we must update index pointer
+            if (item == (*ptrht)[index])
+                (*ptrht)[index] = item->ptrnext;
+            // Link previous item with the next one
+            if (prev != NULL)
+                prev->ptrnext = item->ptrnext;
+            // Finally - delete it
+            free(item);
+            return;
+        }
+        // Iterate
+        prev = item;
+        item = item->ptrnext;
+    }
 }
 
 /* TRP s explicitně zřetězenými synonymy.
@@ -136,6 +199,17 @@ void htDelete ( tHTable* ptrht, tKey key ) {
 */
 
 void htClearAll ( tHTable* ptrht ) {
+    if (ptrht == NULL) return;
 
- solved = 0; /*v pripade reseni, smazte tento radek!*/
+    tHTItem *actual = NULL;
+    tHTItem *next = NULL; // We need to save it before free
+    for (int i = 0; i < HTSIZE; i++) {
+        actual = (*ptrht)[i];
+        while (actual != NULL) {
+            next = actual->ptrnext;
+            free(actual);
+            actual = next;
+        }
+        (*ptrht)[i] = NULL;
+    }
 }
