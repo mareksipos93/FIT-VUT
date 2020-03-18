@@ -6,5 +6,5 @@ Projekty jsou rozřazeny podle jednotlivých předmětů.
   
 Autor: Marek Šipoš  
   
-marek.sipos(at)mensa.cz  
+sipos.marek(at)email.cz  
   
