@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    Hlavní okno aplikace
+    Autor: Marek Šipoš (xsipos03)
+    ITU PROJEKT 2017, FIT VUT
+-->
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.91" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.iwitrag.cudemo.MainController" prefHeight="600.0" prefWidth="800.0">
+
+    <GridPane style="-fx-background-color: #0f0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="140.0" maxWidth="200.0"/>
+            <ColumnConstraints hgrow="SOMETIMES"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <TabPane style="-fx-background-color: #f4f4f4;" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                 tabClosingPolicy="UNAVAILABLE" fx:id="mainMenu">
+            <Tab text="Nabídka" fx:id="optionsTab">
+                <ScrollPane fitToWidth="true" fitToHeight="true">
+                    <padding><Insets top="10" right="3" bottom="3" left="3"/></padding>
+                        <BorderPane>
+                            <top>
+                            <HBox alignment="CENTER">
+                                <VBox alignment="CENTER">
+                                    <Label text="Demonstrace" style="-fx-font-size: 18px; -fx-text-alignment: center;"/>
+                                    <GridPane vgap="5" alignment="CENTER">
+                                        <Button text="Nová" onAction="#newButtonClicked" style="-fx-graphic: url('new_demo.png')" GridPane.columnIndex="0" GridPane.rowIndex="0" minHeight="30" minWidth="110" fx:id="newButton"/>
+                                        <Button text="Otevřít" onAction="#loadButtonClicked" style="-fx-graphic: url('load_demo.png')" GridPane.columnIndex="0" GridPane.rowIndex="1" minHeight="30" minWidth="110" fx:id="loadButton"/>
+                                        <Button text="Uložit" onAction="#saveButtonClicked" style="-fx-graphic: url('save_demo.png')" GridPane.columnIndex="0" GridPane.rowIndex="2" minHeight="30" minWidth="110" fx:id="saveButton" disable="true"/>
+                                        <Button text="Uložit jako" onAction="#saveAsButtonClicked" style="-fx-graphic: url('save_demo_as.png')" GridPane.columnIndex="0" GridPane.rowIndex="3" minHeight="30" minWidth="110" fx:id="saveAsButton" disable="true"/>
+                                    </GridPane>
+                                </VBox>
+                            </HBox>
+                            </top>
+                            <center>
+                            <HBox minHeight="30" alignment="CENTER"/>
+                            </center>
+                            <bottom>
+                            <HBox alignment="CENTER">
+                                <VBox alignment="CENTER">
+                                    <Label text="Nastavení" style="-fx-font-size: 18px; -fx-text-alignment: center;"/>
+                                    <GridPane vgap="5">
+                                        <rowConstraints>
+                                            <RowConstraints vgrow="SOMETIMES" valignment="CENTER"/>
+                                        </rowConstraints>
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES" halignment="RIGHT" percentWidth="55"/>
+                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" maxWidth="10"/>
+                                            <ColumnConstraints hgrow="SOMETIMES" halignment="LEFT" percentWidth="45"/>
+                                        </columnConstraints>
+                                        <Label text="Nějaké supr nastavení" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                                        <Label text="Něco dalšího" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="1" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                        <Label text="A ještě něco navíc" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="2" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                        <Label text="Nějaká hodnota" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="3" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <TextField GridPane.hgrow="ALWAYS" GridPane.columnIndex="2" GridPane.rowIndex="3"><GridPane.margin><Insets right="11"/></GridPane.margin></TextField>
+                                        <Label text="Další číslo" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="4" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <TextField GridPane.hgrow="ALWAYS" GridPane.columnIndex="2" GridPane.rowIndex="4"><GridPane.margin><Insets right="11"/></GridPane.margin></TextField>
+                                    </GridPane>
+                                    <HBox minHeight="30" alignment="CENTER"/>
+                                    <Label text="CUDEMO v1.0"/>
+                                </VBox>
+                            </HBox>
+                            </bottom>
+                        </BorderPane>
+
+                </ScrollPane>
+            </Tab>
+            <Tab text="Demonstrace" fx:id="demoOptionsTab">
+                <ScrollPane fitToWidth="true" fitToHeight="true">
+                    <padding><Insets top="10" right="3" bottom="3" left="3"/></padding>
+                    <BorderPane>
+                        <top>
+                            <HBox alignment="CENTER">
+                                <VBox alignment="CENTER">
+                                    <Label text="Možnosti demonstrace" style="-fx-font-size: 18px; -fx-text-alignment: center;" fx:id="demoOptionsLabel"/>
+                                    <GridPane vgap="5">
+                                        <rowConstraints>
+                                            <RowConstraints vgrow="SOMETIMES" valignment="CENTER"/>
+                                        </rowConstraints>
+                                        <columnConstraints>
+                                            <ColumnConstraints hgrow="SOMETIMES" halignment="RIGHT" percentWidth="55"/>
+                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" maxWidth="10"/>
+                                            <ColumnConstraints hgrow="SOMETIMES" halignment="LEFT" percentWidth="45"/>
+                                        </columnConstraints>
+                                        <Label text="Nějaké supr nastavení" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="0" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                                        <Label text="Něco dalšího" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="1" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                                        <Label text="A ještě něco navíc" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="2" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <CheckBox GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                                        <Label text="Nějaká hodnota" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="3" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <TextField GridPane.hgrow="ALWAYS" GridPane.columnIndex="2" GridPane.rowIndex="3"><GridPane.margin><Insets right="11"/></GridPane.margin></TextField>
+                                        <Label text="Další číslo" wrapText="true" GridPane.columnIndex="0" GridPane.rowIndex="4" textAlignment="RIGHT" alignment="CENTER_RIGHT"/>
+                                        <TextField GridPane.hgrow="ALWAYS" GridPane.columnIndex="2" GridPane.rowIndex="4"><GridPane.margin><Insets right="11"/></GridPane.margin></TextField>
+                                    </GridPane>
+                                </VBox>
+                            </HBox>
+                        </top>
+                        <bottom>
+                            <HBox alignment="CENTER">
+                                <VBox alignment="CENTER">
+                                    <HBox minHeight="30" alignment="CENTER"/>
+                                    <Label text="CUDEMO v1.0"/>
+                                </VBox>
+                            </HBox>
+                        </bottom>
+                    </BorderPane>
+                </ScrollPane>
+            </Tab>
+        </TabPane>
+        <TabPane style="-fx-background-color: #e99;" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                 tabClosingPolicy="ALL_TABS" fx:id="demonstrations">
+            <Tab text="Prázdná demonstrace" style="-fx-background-color: #ddd; -fx-focus-color: transparent;"
+                 closable="false" fx:id="emptyDemonstrationTab">
+                <VBox alignment="CENTER" style="-fx-background-color: #ddd;">
+                    <HBox alignment="CENTER">
+                        <padding><Insets top="10" right="10" bottom="5" left="10"/></padding>
+                        <Label text="Žádná demonstrace není otevřena.&#10;Vytvořte novou demonstraci nebo otevřete již existující."
+                               wrapText="true" style="-fx-font-size: 18px; -fx-text-alignment: center;"/>
+                    </HBox>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </GridPane>
+</AnchorPane>

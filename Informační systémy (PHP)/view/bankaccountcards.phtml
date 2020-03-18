@@ -1,0 +1,24 @@
+<h1>Karty k účtu</h1>
+
+<?php if ($active_cards): ?>
+<h2>Vaše aktivní karty</h2>
+
+<?= $_active_cards ?>
+
+<?php endif ?>
+
+<?php if ($other_cards): ?>
+<h2>Vaše neaktivní karty</h2>
+
+<?= $_other_cards ?>
+
+<?php endif ?>
+
+<h2>Zažádat o novou kartu</h2>
+
+<p>
+    Zde si můžete k účtu přidat platební kartu.<br />
+    Po vytvoření a vyřízení žádosti vám bude karta zaslána poštou.
+</p>
+
+<?= $new_card->render() ?>

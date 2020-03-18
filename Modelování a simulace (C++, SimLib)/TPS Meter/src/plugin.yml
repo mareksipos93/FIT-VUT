@@ -1,0 +1,8 @@
+name: TPSmeter
+version: 1.0
+author: Marek Sipos (xsipos03)
+main: cz.iwitrag.tpsmeter.Main
+commands:
+      tpsmeter:
+               description: Hlavni prikaz pro TPS Meter
+               usage: /tpsmeter

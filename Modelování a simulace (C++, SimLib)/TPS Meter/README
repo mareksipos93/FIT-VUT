@@ -1,0 +1,17 @@
+TPS Meter v1.0
+Marek Sipos (xsipos03)
+
+--- POPIS ---
+Jedná se o plugin pro CraftBukkitový server hry Minecraft.
+Plugin je schopen zmìøit TPS (ticks per second) v zadaném èasovém úseku a v urèitém intervalu pravidelnì zapisovat výstup do souboru.
+
+--- KOMPILACE ---
+Pøi pøekladu pluginu je nutné do Build Path uvést cestu k JAR souboru s CraftBukkitovým serverem hry Minecraft (ideálnì Spigot).
+
+--- POUŽITÍ ---
+Ve høe nebo v konzoli serveru zadávejte pøíkazy:
+/tpsmeter start - spustí mìøení až do zastavení, zápis do souboru každou sekundu
+/tpsmeter start <interval> - spustí mìøení až do zastavení, zápis do souboru každých <interval> sekund
+/tpsmeter start <interval> <trvání> - spustí mìøení na <trvání> sekund, zápis do souboru každých <interval> sekund
+/tpsmeter stop - zastaví probíhající mìøení a výsledné statistiky zapíše do souboru
+/tpsmeter file <soubor> - nastaví soubor pro ukládání výsledkù (výchozí je 'measurements.txt').

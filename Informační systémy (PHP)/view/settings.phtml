@@ -1,0 +1,26 @@
+<h1>Nastavení</h1>
+
+<p>
+    Na této stránce můžete upravit své osobní a registrační údaje.
+</p>
+
+<h2>Změna e-mailu</h2>
+
+<p>
+    Pokud si změníte e-mail, budete jej muset znovu potvrdit aktivačním kódem.
+</p>
+
+<?= $change_email->render() ?>
+
+<h2>Změna hesla</h2>
+
+<?= $change_password->render() ?>
+
+<h2>Změna osobních údajů</h2>
+
+<p>
+    V případě úpravy osobních údajů budou tyto údaje ověřeny pracovníkem.<br />
+    Do té doby vám mohou být omezeny některé služby.
+</p>
+
+<?= $change_personal->render() ?>

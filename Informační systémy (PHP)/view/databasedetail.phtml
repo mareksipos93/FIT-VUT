@@ -1,0 +1,37 @@
+<?php if ($render_ib_account): ?>
+<h1><?= $h1 ?></h1>
+
+<p>Podrobnosti o uživateli podle jeho online účtu.</p>
+
+<h2>Online účet</h2>
+<?= $_ib_account ?>
+
+<h2>Osobní údaje</h2>
+<?= $_person ?>
+<?php endif ?>
+
+
+<!------------------------------->
+
+
+<?php if ($render_bank_account): ?>
+<h1><?= $h1 ?></h1>
+
+<p>Podrobnosti o bankovním účtu.</p>
+
+<?= $_bank_account ?>
+
+<?php endif ?>
+
+
+<!------------------------------->
+
+
+<?php if ($render_card): ?>
+<h1><?= $h1 ?></h1>
+
+<p>Podrobnosti o platební kartě.</p>
+
+<?= $_card ?>
+
+<?php endif ?>

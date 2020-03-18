@@ -1,0 +1,16 @@
+<h1>Zprávy</h1>
+
+<?php if ($no_notifs): ?>
+<em>Nemáte žádné zprávy</em>
+<?php endif ?>
+
+<?php foreach ($_notifs as $notif): ?>
+<?= $notif['h2'] ?>
+<div class="notification <?= $notif['type'] ?>">
+    <span class="notif_cell notif_date"><?= $notif['date'] ?></span>
+    <span class="notif_cell notif_text">
+        <?= $notif['text'] ?>
+    </span>
+</div>
+<?php endforeach ?>
+

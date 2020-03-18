@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head>
+    <base href="<?= $base['root'] ?>" />
+    <meta charset="UTF-8" />
+    <title><?= $title ?>Simple Bank</title>
+    <meta name="description" content="<?= $description ?>" />
+    <meta name="keywords" content="<?= $keywords ?>" />
+    <link rel="stylesheet" href="styles/style.css" type="text/css"/>
+    <link rel="stylesheet" href="styles/forms.css" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin-ext" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="scripts/scripts.js"></script>
+
+    <noscript>
+        <!-- make messages initially visible when JS is disabled -->
+        <style type="text/css">
+            div.msg_wrap { display: block; }
+        </style>
+    </noscript>
+</head>
+
+<body>
+<?= $_redirects ?>
+<header>
+    <a href="/" id="header_logo"></a>
+
+    <div id="header_status">
+        <?php if ($logged): ?>
+        <div class="header_status_cell">
+            <a id="notifications" href="/notifications">
+                <?= $_notifications ?>
+            </a>
+            <?= $role ?> <?= $fname ?> <?= $sname ?>
+        </div>
+        <div class="header_status_cell">
+            <a href="/settings">Nastavení</a> | <a href="/logout">Odhlásit</a>
+        </div>
+        <?php endif; ?>
+        <?php if (!$logged): ?>
+        <div class="header_status_cell">
+
+        </div>
+        <?php endif; ?>
+    </div>
+
+</header>
+
+<nav id="nav_main">
+    <div class="nav_content">
+        <ul>
+<?php foreach ($main_menu as $item) : ?>
+                <li class="<?= $item['selected'] ?>"><a href="/<?= $item['href'] ?>"><?= $item['first'] ?><br /><span class="cash"><?= $item['second'] ?></span></a></li>
+<?php endforeach ?>
+        </ul>
+    </div>
+</nav>
+<nav id="nav_sub">
+    <div class="nav_content">
+        <ul>
+<?php foreach ($sub_menu as $item) : ?>
+                <li class="<?= $item['selected'] ?>"><a href="/<?= $item['href'] ?>" class="<?= $item['image'] ?>"><span class="menu_text"><?= $item['text'] ?></span></a></li>
+<?php endforeach ?>
+        </ul>
+    </div>
+</nav>
+
+<div id="content">
+    <article>
+        <div id="messages">
+<?php foreach ($messages as $msg) : ?>
+            <div class="msg_wrap" onclick="hide(this);">
+                <div class="msg <?= $msg->getStyle() ?>">
+                    <span class="msgtext"><?= $msg->getText() ?></span>
+                </div>
+            </div>
+<?php endforeach ?>
+        </div>
+<?php $this->controller->printView(); ?>
+    </article>
+
+    <footer class="footer">
+        <p>
+            Simple Bank – Banking made simple | <a href="about">O nás</a>
+        </p>
+    </footer>
+</div>
+</body>
+</html>

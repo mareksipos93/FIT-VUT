@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    Okno pro výběr typu nové demonstrace
+    Autor: Marek Šipoš (xsipos03)
+    ITU PROJEKT 2017, FIT VUT
+-->
+
+<AnchorPane prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.91" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.iwitrag.cudemo.NewDemoController">
+   <children>
+      <HBox AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+          <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" minWidth="150.0">
+              <ListView fx:id="presetDemos" onMouseClicked="#handleMouseClick"/>
+              <Button minWidth="150.0" text="Vybrat" style="-fx-font-size: 18px;" onAction="#newDemoButtonClicked" fx:id="newDemoButton" disable="true"/>
+          </VBox>
+          <TextArea fx:id="demoDesc" style="-fx-font-size: 16px;" text="Vyberte demonstraci, která se má vytvořit" editable="false" wrapText="true"/>
+      </HBox>
+   </children>
+</AnchorPane>

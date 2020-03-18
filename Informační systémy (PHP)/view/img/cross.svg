@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="cross.svg"
+   inkscape:export-filename="M:\OneDrive - Vysoké učení technické v Brně\škola\IIS\view\img\cross.png"
+   inkscape:export-xdpi="61.421047"
+   inkscape:export-ydpi="61.421047">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="310.13788"
+     inkscape:cy="633.12982"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Vrstva 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.06500006;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 80.027797,121.94462 a 7.7382774,7.7382774 0 0 0 -7.73803,7.73855 7.7382774,7.7382774 0 0 0 7.73803,7.73802 7.7382774,7.7382774 0 0 0 7.738544,-7.73802 7.7382774,7.7382774 0 0 0 -7.738544,-7.73855 z m 2.714046,2.77554 1.093472,0.81804 -2.89233,3.87056 2.925403,3.91449 -1.093473,0.81649 -2.683557,-3.59151 -2.672189,3.57601 -1.093472,-0.81856 2.913517,-3.89847 -2.878378,-3.85299 1.091922,-0.81649 2.638084,3.53002 z"
+       id="path817"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

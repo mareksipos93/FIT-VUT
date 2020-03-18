@@ -1,0 +1,9 @@
+<?php if ($is_employee): ?><h1>Hlavní panel zaměstnance</h1><?php endif ?>
+<?php if ($is_admin): ?><h1>Hlavní panel administrátora</h1><?php endif ?>
+
+<h2>Čekající žádosti:</h2>
+
+Počet osob k ověření osobních údajů: <strong><?= $pending_persons ?></strong><br />
+Počet žádostí o otevření bankovního účtu: <strong><?= $pending_bank_accounts ?></strong><br />
+Počet dosud nevydaných platebních karet: <strong><?= $pending_cards ?></strong><br />
+Počet nových disponentů ke schválení: <strong><?= $pending_disponents ?></strong><br />

@@ -1,0 +1,28 @@
+<h1>Disponenti k účtu</h1>
+
+<?php if ($active_disponents): ?>
+    <h2>Aktuální disponenti</h2>
+
+    <?= $_active_disponents ?>
+
+<?php endif ?>
+
+<?php if ($other_disponents): ?>
+    <h2>Neaktuální disponenti</h2>
+
+    <?= $_other_disponents ?>
+
+<?php endif ?>
+
+<?php if ($can_add): ?>
+<h2>Přidat nového disponenta</h2>
+
+<p>
+    K účtu můžete přidat nového disponenta.<br />
+    Disponent je člověk, se kterým svůj účet sdílíte.<br />
+    Disponenti si mohou poté vytvářet své vlastní karty k účtu a využívat jeho zůstatek pro platby.<br />
+    Pro přidání disponenta je nutné, aby u nás měl tento člověk založen online účet.
+</p>
+
+    <?= $new_disponent->render() ?>
+<?php endif ?>

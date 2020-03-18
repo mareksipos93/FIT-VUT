@@ -1,0 +1,244 @@
+/* FANCY FORM - Honza Bittner (itnetwork.cz) */
+/* OPRAVY PROVEDL - Marek Šipoš */
+
+nav.button-bar {
+    text-align: center;
+    margin: 10px 0;
+}
+
+a.aButton, nav.button-bar a, input[type="submit"] {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition-property: background;
+    -moz-transition-property: background;
+    -o-transition-property: background;
+    transition-property: background;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    border: 1px solid #4A81F8;
+    background: #3b94e0;
+    color: white;
+    padding: 6px 25px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+a.aButton:hover, nav.button-bar a:hover, input[type="submit"]:hover {
+    background: #3dadfb;
+}
+
+.register-table  {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    padding: 10px;
+}
+
+.fancyform .invalid {
+    background: #EDD2CC !important;
+}
+
+.form-component {
+    margin: 5px !important;
+}
+
+.form-component > label:first-child
+{
+    float: left;
+    width: 120px;
+    color: #666;
+}
+
+.form-buttons {
+    text-align: center;
+    clear: both;
+    margin-top: 30px !important;
+}
+
+.form-buttons input:not(:last-child) {
+    margin-right: 5px;
+}
+
+.radio-vertical
+{
+    float: left;
+}
+
+.radio-vertical label
+{
+    display: block;
+    clear: both;
+    margin: 3px 0 !important;
+    
+}
+
+.radio-horizontal label
+{
+    margin: 0 10px 0 0 !important;
+}
+
+/*
+    Fancy Form
+*/
+
+.fancyform {
+    max-width: 670px;
+    margin: 30px auto;
+}
+
+.fancyform *
+{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    border: 0;
+    outline: 0;
+    border-radius: 0;
+    font-family: 'Arial', serif;
+}
+
+.fancyform *:focus
+{
+    border-bottom-style: inset;
+}
+
+.fancyform input:not([type="submit"]), .fancyform textarea, .fancyform select
+{
+    width: calc(100% - 130px);
+    min-width: 300px;
+    padding: 4px;
+    background: #fafafa;
+    border: 1px solid #ccc; 
+}
+
+.fancyform input:not([type="submit"]):focus, .fancyform textarea:focus
+{
+    /* border-left: 2px solid #ccc;
+    margin-left: -1px;
+    margin-right: -1px;
+    border-right: 2px solid #ccc; */
+    box-shadow: 0 2px 0 #3c95db;
+    border-bottom: 0;
+    margin-bottom: 1px;
+}
+
+/*** radio, checkbox ***/
+
+.fancyform input[type="radio"],.fancyform input[type="checkbox"]
+{
+    display: none;
+}
+
+.fancyform input[type="radio"] + label:before,.fancyform input[type="checkbox"] + label:before
+{
+    content: '';
+    width: 14px;
+    height: 14px;
+    display: inline-block;    
+    vertical-align: middle;
+    background: #fafafa;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    margin-bottom: 3px;
+}
+
+.fancyform input[type="radio"] + label:before
+{
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+
+.fancyform input[type="radio"]:checked + label:before, .fancyform input[type="checkbox"]:checked + label:before
+{
+    background: #3c95db;
+    border: 1px solid #27609E;
+}
+
+
+/*** file ***/
+
+.fancyform input[type="file"]
+{
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+}
+
+.fancyform input[type="file"]::-webkit-file-upload-button {
+    cursor: pointer;
+    background: #ddd;
+    border: 0;
+    border-bottom: 2px solid #bababa;
+    padding: 5px 10px;
+    outline: 0;
+}
+
+.fancyform input[type="file"]::-webkit-file-upload-button:hover
+{
+    background: #3c95db;
+    border-bottom: 2px solid #09628a;
+    color: #fafafa;
+}
+
+.fancyform input[type="file"]:focus
+{
+    box-shadow: 0 0 0 red;
+}
+
+/*** select ***/
+
+.fancyform select
+{
+    outline: 0;
+    padding: 3px 0 3px 0;
+    background: #fafafa;
+    border: 1px solid #ccc;
+    width: calc(100% - 130px);
+}
+
+.fancyform select[size]:not([size="1"]), .fancyform select[multiple]
+{
+    padding: 0;
+}
+
+.fancyform input:disabled {
+    background-color: #e9e9e2;
+}
+
+.inline-form .form-component {
+    display: inline-block;
+    max-width: 120px;
+    margin-right: 10px !important;
+}
+
+.inline-form .form-buttons {
+    display: inline-block;
+    margin-top: 0px !important;
+    margin-left: 5px !important;
+}
+
+.inline-form {
+    max-width: none !important;
+    text-align: center;
+    margin: 0;
+}
+
+.inline-form label {
+    text-align: left;
+}
+
+.inline-form input:not([type="submit"]), .inline-form textarea, .inline-form select
+{
+    max-width: 120px !important;
+    min-width: 120px !important;
+}
+
+.clear {
+    clear: both;
+}

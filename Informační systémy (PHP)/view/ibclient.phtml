@@ -1,0 +1,26 @@
+<h1>Internetové bankovnictví</h1>
+
+
+<h2>Vaše žádosti</h2>
+
+<?php if ($no_requests): ?>
+Nemáte žádné žádosti.
+<?php endif ?>
+<?php if ($account_requests): ?>
+<h3>Žádosti o bankovní účty</h3>
+
+<?= $_account_requests ?>
+
+<?php endif ?>
+<?php if ($card_requests): ?>
+<h3>Žádosti o karty</h3>
+
+<?= $_card_requests ?>
+
+<?php endif ?>
+<?php if ($disponent_requests): ?>
+<h3>Žádosti na disponenty</h3>
+
+<?= $_disponent_requests ?>
+
+<?php endif ?>

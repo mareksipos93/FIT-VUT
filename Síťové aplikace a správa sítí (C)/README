@@ -1,0 +1,47 @@
+Feedreader - čtečka feedů ve formátu RSS nebo ATOM
+Autor: Marek Šipoš (xsipos03)
+
+-----------------------------
+
+Stručný popis:
+
+Tento program slouží k jednoduchému zobrazení obsahu feedu zadaného adresou URL. Program umožňuje zadání více adres URL pomocí speciálního souboru feedfile, podporuje nezabezpečenou i zabezpečenou (SSL, TLS) komunikaci a také předložení vlastních certifikátů, vůči kterým se má ověřit totožnost a důvěryhodnost serveru.
+
+-----------------------------
+
+Obecný předpis pro použití programu:
+
+feedreader <URL | -f <feedfile>> [-c <certfile>] [-C <certaddr>] [-T] [-a] [-u] [-h]
+
+-----------------------------
+
+Příklad spuštění:
+
+./feedreader http://www.nejakyweb.cz/rss.xml -c certifikat.crt -T -u
+
+-----------------------------
+
+Direktivy Makefile:
+
+make			Zkompiluje zdrojové kódy a vytvoří spustitelný soubor 'feedreader'.
+make all		Stejné jako direktiva 'make'.
+make test		Zkompiluje zdrojové kódy programu, zdrojové kódy testů, vytvoří spustitelné soubory a nakonec spustí testy.
+make runtest	Pouze spustí testy bez pokusu o kompilaci.
+make fullclean	Odstraní soubory zkompilovaného zdrojového kódu, testů i binární soubory.
+make clean		Odstraní nepotřebné soubory zkompilovaného zdrojového kódu a testů (ponechá binární soubory).
+make cleantest	Odstraní nepotřebné soubory zkompilovaných testů (ponechá binární soubory).
+make distclean  Odstraní pouze výsledné binární soubory.
+make tar		Zabalí soubory uvedené v části 'Seznam odevzdávaných souborů' do archivu TAR bez komprese.
+
+-----------------------------
+
+Popis jednotlivých parametrů:
+
+URL				Adresa URL, jejiž feedy se mají načíst a zpracovat. Musí začínat http:// či https://. Za hostitelem je možné zadat explicitní port uvozený dvojtečkou.
+-f feedfile		Cesta k souboru feedfile obsahujícího více adres URL s feedy, které se mají načíst a zpracovat.
+-c certfile		Cesta k souboru s certifikáty pro ověření důvěryhodnosti.
+-C certaddr		Cesta k adresáři s certifikáty pro ověření důvěryhodnosti.
+-T				Zobrazit časové údaje u položek feedu.
+-a				Zobrazit informace o autorovi u položek feedu.
+-u				Zobrazit asociovanou adresu u položky feedu.
+-h				Zobrazit nápovědu k programu.

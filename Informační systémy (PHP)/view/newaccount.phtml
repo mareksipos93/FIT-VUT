@@ -1,0 +1,15 @@
+<h1>Otevření nového účtu</h1>
+
+<p>
+<?php if ($is_client): ?>
+    Na této stránce si můžete zažádat o náš bankovní účet a s ním spojené služby.<br />
+    Stačí si jednoduše zvolit typ účtu. Poté bude žádost předána našim pracovníkům.<br />
+    Po otevření účtu se vám zpřístupní řada výhod, například si budete moci k účtu přidat disponenty.
+<?php endif ?>
+<?php if ($is_privileged): ?>
+    Na této stránce je možné vytvořit nový bankovní účet.<br />
+    Účet bude okamžitě aktivní.
+<?php endif ?>
+</p>
+
+<?= $form->render() ?>

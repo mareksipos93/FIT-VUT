@@ -1,0 +1,20 @@
+<h1><?= $h1 ?></h1>
+
+<p>
+    Při vyhodnocování žádosti postupujte podle příslušných firemních směrnic.<br />
+    V případě nejasností se obraťte na nadřízeného pracovníka.
+</p>
+
+<?= $_request ?>
+
+<?php if ($form): ?>
+
+<h2>Vyřídit žádost</h2>
+
+<p>
+    <?= $_additional_text ?>
+</p>
+
+<?= $form->render() ?>
+
+<?php endif ?>

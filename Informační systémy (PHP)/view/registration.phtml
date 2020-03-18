@@ -1,0 +1,17 @@
+<h1>Registrace</h1>
+
+<p>
+    Máme radost, že chcete využívat našich služeb.<br />
+    Prvním krokem je vytvoření účtu k internetovému bankovnictví. Jednoduše vyplňte pole uvedená níže.
+</p>
+<p>
+    Máte již účet? <a href="/login">Přihlaste se</a>, případně můžete <a href="/lost-credentials">obnovit ztracené údaje</a>.
+</p>
+
+<?= $form->renderStartForm() ?>
+    <h2>Přihlašovací údaje</h2>
+    <?= $form->renderControls('name', 'password', 'password_again', 'email') ?>
+    <h2>Osobní údaje</h2>
+    <?= $form->renderControls() ?>
+    <?= $form->renderButtons() ?>
+<?= $form->renderEndForm() ?>

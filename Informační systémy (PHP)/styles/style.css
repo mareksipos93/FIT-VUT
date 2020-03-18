@@ -1,0 +1,385 @@
+html, body {
+    margin: 0;
+    background-color: rgb(243,243,243);
+    font-family: 'Open Sans', verdana, sans-serif;
+    font-size: 14px;
+}
+
+html {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+body {
+    background: url("/view/img/bg.png") bottom repeat-x;
+    background-size: 100% 25%;
+    width: 100%;
+    min-height: 100%;
+}
+
+body a {
+    color: rgb(0, 128, 120);
+}
+
+body a:hover {
+    color: rgb(0, 70, 70);
+}
+
+#redirects {
+    background-color: #222222;
+    font-weight: bold;
+    color: yellow;
+    letter-spacing: 3px;
+    word-spacing: 10px;
+    padding: 2px 5px;
+}
+
+.chocolate {
+    color: chocolate;
+}
+
+header {
+    background: url("/view/img/noise.png");
+    height: 150px;
+    min-width: 400px;
+    position: relative;
+}
+
+#header_logo {
+    float: left;
+    background: url("/view/img/logo.png") no-repeat 30px 30px;
+    width: 311px;
+    height: 145px;
+}
+
+#header_status {
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-align: right;
+    padding: 10px;
+    font-size: 13pt;
+}
+
+.header_status_cell {
+    display: block;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, 'Open Sans', verdana, sans-serif;
+}
+
+a#notifications {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    background: url("/view/img/notification.png") no-repeat 0 -1px;
+    margin-right: 8px;
+    vertical-align: middle;
+    position: relative
+}
+
+div.notif_count {
+    color: white;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position:absolute;
+    left:-4px;
+    top:-4px;
+    padding: 0 6px;
+    font-size: 10pt;
+    font-weight: bold;
+    background-color: #666666;
+}
+
+div.notif_count a {
+     color: white;
+}
+
+div.notif_red {
+     background-color: red;
+ }
+
+#nav_main {
+    background: rgb(0, 128, 120) linear-gradient(to right, rgb(0, 128, 120) , rgb(0, 128, 100));
+    min-width: 400px;
+    border-top: rgb(200, 200, 200) solid 1px;
+}
+
+#nav_main a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, 'Open Sans', verdana, sans-serif;
+}
+
+#nav_main a:hover {
+    color: rgb(255, 255, 180);
+}
+
+#nav_main li.selected {
+    background: rgb(255, 255, 255) url("/view/img/noise.png");
+    box-shadow: 12px 0 15px -4px rgba(0, 0, 0, 0.2), -12px 0 15px -4px rgba(0, 0, 0, 0.19);
+}
+
+#nav_main li.selected a {
+    color: rgb(0, 128, 120);
+}
+
+#nav_main li.selected a:hover {
+    color: rgb(0, 128, 120);
+}
+
+#nav_sub {
+    position:relative; /* solves bottom shadow */
+    border-bottom: rgb(200, 200, 200) solid 1px;
+    background: rgb(255, 255, 255) url("/view/img/noise.png");
+    min-width: 400px;
+}
+
+#nav_sub a {
+    color: rgb(0, 128, 120);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav_content {
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1000px;
+    width: 100%;
+    min-width: 400px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+}
+
+nav li {
+    display: inline-block;
+    position: relative;
+    font-size: 13pt;
+}
+
+nav#nav_sub li {
+    width: 120px;
+    height: 85px;
+    white-space: nowrap;
+}
+
+nav#nav_sub li:hover {
+    background-color: rgba(0, 128, 120, 0.05);
+}
+
+nav#nav_sub li.selected {
+    background-color: rgba(0, 128, 120, 0.1);
+}
+
+nav#nav_sub a {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+nav#nav_sub a.menu_add { background: url("/view/img/add.png") no-repeat 50% 28%; background-size: 42px 42px; }
+nav#nav_sub a.menu_login { background: url("/view/img/login.png") no-repeat 50% 25%; background-size: 44px 44px; }
+nav#nav_sub a.menu_info { background: url("/view/img/info_black.png") no-repeat 50% 25%; background-size: 44px 44px; }
+nav#nav_sub a.menu_cards { background: url("/view/img/card.png") no-repeat 50% 25%; background-size: 44px 44px; }
+nav#nav_sub a.menu_payment { background: url("/view/img/payment.png") no-repeat 50% 25%; background-size: 44px 44px; }
+nav#nav_sub a.menu_disponents { background: url("/view/img/disponent.png") no-repeat 50% 25%; background-size: 48px 48px; }
+nav#nav_sub a.menu_logs { background: url("/view/img/log.png") no-repeat 50% 25%; background-size: 44px 44px; }
+nav#nav_sub a.menu_request_person { background: url("/view/img/request_person.png") no-repeat 50% 25%; background-size: 44px 44px; }
+nav#nav_sub a.menu_request_bank_account { background: url("/view/img/request_bank_account.png") no-repeat 50% 25%; background-size: 44px 44px; }
+nav#nav_sub a.menu_request_card { background: url("/view/img/request_card.png") no-repeat 50% 25%; background-size: 44px 44px; }
+nav#nav_sub a.menu_request_disponent { background: url("/view/img/request_disponent.png") no-repeat 50% 25%; background-size: 44px 44px; }
+
+.menu_text {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+nav li span.cash {
+    font-size: 11pt;
+    font-family: 'Open Sans', verdana, sans-serif;
+}
+
+div#messages {
+    margin: 0 30px;
+}
+
+div.msg {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table;
+    table-layout:fixed;
+    width: 100%;
+    min-height: 60px;
+    padding: 5px 5px 5px 60px;
+    margin-bottom: 10px;
+    border: rgb(200,200,200) solid 1px;
+    color: white;
+}
+div.msg a {
+    color: rgb(255, 255, 255);
+}
+
+div.msg a:hover {
+    color: rgb(255, 255, 180);
+}
+
+div.msg_wrap {
+    display: none;
+}
+
+span.msgtext {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+div.msg_success { background: rgb(26, 184, 93) url("/view/img/tick.png") no-repeat 10px 50%; }
+div.msg_info { background: rgb(46, 113, 204) url("/view/img/info.png") no-repeat 10px 50%; }
+div.msg_error { background: rgb(204, 46, 60) url("/view/img/cross.png") no-repeat 10px 50%; }
+
+h1 {
+    font-weight: normal;
+    text-align: left;
+    color: rgb(0, 128, 120);
+    font-size: 20pt;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, 'Open Sans', verdana, sans-serif;
+}
+
+h2 {
+    font-weight: normal;
+    text-align: left;
+    color: rgb(0, 128, 120);
+    font-size: 16pt;
+    margin-top: 30px;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, 'Open Sans', verdana, sans-serif;
+}
+
+#content {
+    margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+    min-width: 400px;
+}
+
+article {
+    border: rgb(200, 200, 200) solid 1px;
+    border-top: 0;
+    background-color: white;
+    padding: 10px 10px 30px 10px;
+}
+
+footer.footer {
+    height: 45px;
+    padding: 10px;
+    font-size: 11pt;
+    text-align: center;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, 'Open Sans', verdana, sans-serif;
+}
+
+.notification {
+    display: table;
+    border: rgb(100, 100, 100) solid 1px;
+    width: 90%;
+    background-color: #F5F5F5;
+    margin: 10px auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.notif_unseen {
+    background-color: #FFCCB3;
+}
+
+.notif_recent {
+    background-color: #f9edde;
+}
+
+.notif_cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 3px;
+}
+
+.notif_date {
+    width: 20%;
+    text-align: center;
+    font-size: 12pt;
+}
+
+.notif_text {
+    font-size: 11pt;
+}
+
+table.table {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+tr {
+    background-color: white;
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(245, 251, 251);
+}
+
+tr:hover {
+    background-color: rgb(255, 253, 209);
+}
+
+td, th {
+    border: 1px solid rgb(193, 218, 215);
+    padding: 8px;
+}
+
+th {
+    background-color: rgb(213, 237, 237);
+}
+
+td.hide, th.hide {
+    border: 0;
+    background-color: white;
+}
+
+a.delete_btn {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url("/view/img/delete.png") no-repeat; background-size: 30px 30px;
+}
+
+a.view_btn {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url("/view/img/view.png") no-repeat; background-size: 30px 30px;
+}
+
+a.warning_btn {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("/view/img/warning.png") no-repeat; background-size: 20px 20px;
+}
+
+dl.detail {
+    display: grid;
+    grid-template: auto / 10em 1fr;
+}
